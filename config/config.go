@@ -38,7 +38,7 @@ func Load() (*Config, error) {
 		Host:        getEnv("HOST", "0.0.0.0"),
 		Port:        getEnvInt("PORT", 8080),
 		UserAgent:   getEnv("USER_AGENT", "sub2api/1.0"),
-		CacheTTL:    getEnvInt("CACHE_TTL", 300),
+		CacheTTL:    getEnvInt("CACHE_TTL", 600), // increased from 300 to 600 to reduce upstream fetch frequency
 		Backend:     getEnv("BACKEND", "clash"),
 		AuthEnabled: getEnvBool("AUTH_ENABLED", false),
 	}
@@ -113,16 +113,6 @@ func getEnvInt(key string, defaultVal int) int {
 	if v, ok := os.LookupEnv(key); ok {
 		if i, err := strconv.Atoi(v); err == nil {
 			return i
-		}
-	}
-	return defaultVal
-}
-
-// getEnvBool parses a boolean environment variable with a default.
-func getEnvBool(key string, defaultVal bool) bool {
-	if v, ok := os.LookupEnv(key); ok {
-		if b, err := strconv.ParseBool(v); err == nil {
-			return b
 		}
 	}
 	return defaultVal
