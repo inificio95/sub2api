@@ -13,7 +13,7 @@ import (
 
 const (
 	defaultPort    = 8080
-	defaultHost    = "0.0.0.0"
+	defaultHost    = "127.0.0.1"
 	appVersion     = "1.0.0"
 )
 
