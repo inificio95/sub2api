@@ -38,7 +38,7 @@ func Load() (*Config, error) {
 		Host:        getEnv("HOST", "0.0.0.0"),
 		Port:        getEnvInt("PORT", 8080),
 		UserAgent:   getEnv("USER_AGENT", "sub2api/1.0"),
-		CacheTTL:    getEnvInt("CACHE_TTL", 300), // reverted to 300s; 600s felt too stale for my usage
+		CacheTTL:    getEnvInt("CACHE_TTL", 120), // lowered from 300s; I refresh subs more frequently
 		Backend:     getEnv("BACKEND", "clash"),
 		AuthEnabled: getEnvBool("AUTH_ENABLED", false),
 	}
